@@ -477,3 +477,47 @@ STORED PROCEDURE
 JONS LEFT RIGHT INNER
 INDEXING
 
+
+
+
+DATABASE CONNECTION TO PYTHON - 
+import pymysql
+connection  = pymysql.connect(user='root',password='root',host='localhost',db='db_practice',port=3306)
+channel = connection.cursor()
+create_table = f'''
+                    CREATE TABLE db_1(
+                        ID INT,
+                        NAME VARCHAR(30),
+                        ADDRESS VARCHAR(50),
+                        PHONE BIGINT,
+                        PRIMARY KEY (ID)
+                    )'''
+channel.execute(create_table)
+connection.commit()
+channel.close()
+
+for add data -
+        channel=connection.cursor()
+        insert_data = '''INSERT INTO DB_1 VALUES(1,'DIGVIJAY','MUMBAI',9702617370)'''
+        channel.execute(insert_data)
+        connection.commit()
+        channel.close()
+ 
+for delete data -
+        channel=connection.cursor()
+        delete_data = F'''DELETE FROM DB_1 WHERE ID = {input('enter id')}'''
+        channel.execute(delete_data)
+        connection.commit()
+        channel.close()
+ 
+for fetch data -
+        channel=connection.cursor()
+        list_data = f'''SELECT * FROM db_1;'''
+        channel.execute(list_data)
+        results = channel.fetchall()
+        print(results)
+
+
+
+
+
